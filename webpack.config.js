@@ -22,7 +22,7 @@ module.exports = {
     },
     compress: true,
     port: 3030,
-    hot: 'only',
+    hot: true,
   },
   module: {
     rules: [
@@ -57,7 +57,11 @@ module.exports = {
   resolve: {
     extensions: ['*', '.ts', '.tsx', '.js', '.json'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src/'),
+      '@components': path.resolve(
+        __dirname,
+        'src/components/'
+      ),
     },
   },
 };
