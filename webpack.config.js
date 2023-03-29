@@ -49,8 +49,8 @@ module.exports = {
         use: ['svg-inline-loader'],
       },
       {
-        test: /\.(jpg|png)$/,
-        use: ['url-loader'],
+        test: /\.(jpg|png|svg)$/,
+        type: 'asset/resource',
       },
     ],
   },
@@ -62,6 +62,8 @@ module.exports = {
         __dirname,
         'src/components/'
       ),
+      '@common': path.resolve(__dirname, 'src/common/'),
+      '@assets': path.resolve(__dirname, 'src/assets/'),
     },
   },
 };
