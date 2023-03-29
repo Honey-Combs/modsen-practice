@@ -1,11 +1,11 @@
 import React from 'react';
+import { PageLayout } from '@/layouts/PageLayout/PageLayout';
+import { WeatherDashboard } from '@/components/WeatherDashboard/WeatherDashboard';
 
-function App() {
+export function App() {
   return (
-    <div>
-      <p>111111</p>
-    </div>
+    <PageLayout>
+      <WeatherDashboard />
+    </PageLayout>
   );
 }
-
-export default App;
