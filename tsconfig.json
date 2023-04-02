@@ -20,8 +20,11 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@common/*": ["src/common/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@typings/*": ["src/typings/*"],
+      "@store/*": ["src/store/*"],
+      "@styles/*": ["src/store/*"],
+      "@models/*": ["src/models/*"],
     }
   },
 

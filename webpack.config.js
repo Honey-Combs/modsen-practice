@@ -62,8 +62,11 @@ module.exports = {
         __dirname,
         'src/components/'
       ),
-      '@common': path.resolve(__dirname, 'src/common/'),
       '@assets': path.resolve(__dirname, 'src/assets/'),
+      '@typings': path.resolve(__dirname, 'src/typings/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
+      '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@models': path.resolve(__dirname, 'src/models/'),
     },
   },
 };
