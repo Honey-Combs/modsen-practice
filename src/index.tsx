@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
 import { App } from '@/App';
-import GlobalStyles from '@/common/styles/global';
-import { theme } from '@/common/styles/theme';
+import GlobalStyles from '@/styles/global';
+import { theme } from '@/styles/theme';
+import { store } from '@/store/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,9 +13,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-      <GlobalStyles />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <App />
+        <GlobalStyles />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
