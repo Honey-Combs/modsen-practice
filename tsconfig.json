@@ -24,7 +24,7 @@
       "@typings/*": ["src/typings/*"],
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/store/*"],
-      "@models/*": ["src/models/*"],
+      "@api/*": ["src/api/*"],
     }
   },
 
