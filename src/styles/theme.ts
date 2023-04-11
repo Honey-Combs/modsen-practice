@@ -12,7 +12,7 @@ const size = {
 
 export const theme: ITheme = {
   fontSizes: {
-    base: '1rem',
+    base: '1.125rem',
     medium: '1.5rem',
     large: '2rem',
     xlarge: '2.5rem',

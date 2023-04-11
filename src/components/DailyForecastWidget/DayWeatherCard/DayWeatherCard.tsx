@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import { IWeatherForDay } from '@/typings/interfaces/IWeatherForDay';
 import {
   StyledDayOfWeek,
   StyledDayWeatherCard,
@@ -8,15 +7,16 @@ import {
   StyledMinTemperature,
   StyledWeatherPhenomenonIcon,
 } from './styled';
+import { IWeatherForDay } from '@/typings/interfaces/IWeatherForDay';
 
 export type DayWeatherCardProps = {
-  weather: IWeatherForDay;
+  weatherForDay: IWeatherForDay;
 };
 
 export function DayWeatherCard({
-  weather,
+  weatherForDay: weather,
 }: DayWeatherCardProps) {
-  const formattedDate = moment(weather.date).format(
+  const formattedDate = moment(weather.time).format(
     '	ddd, D MMM'
   );
 
