@@ -14,6 +14,7 @@ module.exports = {
       template: './public/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.SourceMapDevToolPlugin({}),
   ],
   mode: 'development',
   devServer: {
@@ -24,6 +25,7 @@ module.exports = {
     port: 3030,
     hot: true,
   },
+  devtool: false,
   module: {
     rules: [
       {
@@ -32,11 +34,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/react',
-              '@babel/typescript',
-            ],
+            presets: ['@babel/preset-env', '@babel/react', '@babel/typescript'],
           },
         },
       },
@@ -58,15 +56,12 @@ module.exports = {
     extensions: ['*', '.ts', '.tsx', '.js', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src/'),
-      '@components': path.resolve(
-        __dirname,
-        'src/components/'
-      ),
+      '@components': path.resolve(__dirname, 'src/components/'),
       '@assets': path.resolve(__dirname, 'src/assets/'),
       '@typings': path.resolve(__dirname, 'src/typings/'),
       '@store': path.resolve(__dirname, 'src/store/'),
       '@styles': path.resolve(__dirname, 'src/styles/'),
-      '@models': path.resolve(__dirname, 'src/models/'),
+      '@api': path.resolve(__dirname, 'src/api/'),
     },
   },
 };
