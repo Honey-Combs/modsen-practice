@@ -1,5 +1,5 @@
-import { OpenMeteoApi } from '@api/openMeteoApi/openMeteoApi';
-import { IOpenMeteoDailyForecast } from '@api/openMeteoApi/responseModels';
+import { weatherForecastApi } from '@/api/weatherForecastApi/weatherForecastApi';
+import { IOpenMeteoDailyForecast } from '@/api/weatherForecastApi/responseModels';
 import { PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchDailyForecastRequested,
@@ -14,7 +14,7 @@ export function* fetchDailyForecast(
 ): Generator<CallEffect | PutEffect, void, IOpenMeteoDailyForecast> {
   try {
     const openMeteoDailyForecast: IOpenMeteoDailyForecast = yield call(
-      OpenMeteoApi.getDailyForecast,
+      weatherForecastApi.getDailyForecast,
       action.payload
     );
 

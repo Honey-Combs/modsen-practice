@@ -3,7 +3,7 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { LoadingState } from '@/typings/enums/LoadingState';
 import { GPSCoordinates } from '@/typings/types/GPSCoordinates';
-import { IOpenMeteoDailyForecast } from '@/api/openMeteoApi/responseModels';
+import { IOpenMeteoDailyForecast } from '@/api/weatherForecastApi/responseModels';
 import { RootState } from '@/store/store';
 import { IWeatherForDay } from '@/typings/interfaces/IWeatherForDay';
 
@@ -39,7 +39,7 @@ export const dailyWeatherForecastSlice = createSlice({
 export const selectDailyWeatherForecast = createSelector(
   (state: RootState) => state.weather.dailyForecast?.daily,
   (daily) => {
-    const arr =  daily?.time.map<IWeatherForDay>((date, index) => {
+    const arr = daily?.time.map<IWeatherForDay>((date, index) => {
       return {
         time: new Date(date),
         icon: daily.weathercode[index],
