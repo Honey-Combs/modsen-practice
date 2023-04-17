@@ -13,15 +13,25 @@ import {
 } from './styled';
 import { fetchDailyForecastRequested } from '@/store/slices/dailyWeatherForecastSlice';
 import { RootState } from '@/store/store';
+import {
+  autoSetLocation,
+  selectCurrentLocation,
+} from '@/store/slices/geolocationSlice';
 
 export function WeatherDashboard() {
   const dispatch = useDispatch();
-  // const weather = useSelector((state: RootState) => state.weather.dailyForecast);
-  // console.log(weather);
+  dispatch(autoSetLocation);
+  const currentLocation = useSelector((state: RootState) =>
+    selectCurrentLocation(state)
+  );
 
   useEffect(() => {
-    dispatch(fetchDailyForecastRequested({ latitude: 53.900716, longitude: 30.33136 }));
-  }, [dispatch]);
+    if (currentLocation === null) {
+      dispatch(autoSetLocation);
+    }
+
+    dispatch(fetchDailyForecastRequested(currentLocation));
+  }, [currentLocation, dispatch]);
 
   return (
     <StyledWeatherDashboard>

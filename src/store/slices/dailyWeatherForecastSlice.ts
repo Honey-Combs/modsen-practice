@@ -1,11 +1,11 @@
 /* eslint-disable no-param-reassign */
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { LoadingState } from '@/typings/enums/LoadingState';
-import { GPSCoordinates } from '@/typings/types/GPSCoordinates';
-import { IOpenMeteoDailyForecast } from '@/api/weatherForecastApi/responseModels';
+import { LoadingState } from '@/enums/LoadingState';
+import { GPSCoordinates } from '@/typings/GPSCoordinates';
 import { RootState } from '@/store/store';
-import { IWeatherForDay } from '@/typings/interfaces/IWeatherForDay';
+import { IOpenMeteoDailyForecast } from '@/interfaces/IWeatherForecastApiResponses';
+import { IWeatherForDay } from '@/interfaces/IWeatherForDay';
 
 type WeatherState = {
   dailyForecast: IOpenMeteoDailyForecast | null;
@@ -21,7 +21,7 @@ export const dailyWeatherForecastSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    fetchDailyForecastRequested(state, action: PayloadAction<GPSCoordinates>) {
+    fetchDailyForecastRequested(state, action: PayloadAction<GPSCoordinates | null>) {
       state.loadingState = LoadingState.loading;
     },
 
@@ -37,7 +37,7 @@ export const dailyWeatherForecastSlice = createSlice({
 });
 
 export const selectDailyWeatherForecast = createSelector(
-  (state: RootState) => state.weather.dailyForecast?.daily,
+  (state: RootState) => state.dailyWeather.dailyForecast?.daily,
   (daily) => {
     const arr = daily?.time.map<IWeatherForDay>((date, index) => {
       return {

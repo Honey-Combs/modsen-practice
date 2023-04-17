@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import Select from 'react-select';
 
-export const StyledLocationSelector = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+export const StyledLocationSelector = styled(Select)`
+  font-family: ${({ theme }) => theme.fonts.base};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  min-width: 15rem;
   color: black;
 `;
+
+export const StyledSelectorWrapper = styled.div``;

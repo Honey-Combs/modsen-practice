@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { IGeocodingApiResponse } from './responseModels';
+import { IGeocodingApiResponse } from '@/interfaces/IGeocodingApiResponses';
 
 export interface GeocodingApi {
-  getCityCoordinates: (cityName: string) => Promise<IGeocodingApiResponse>;
+  getCitiesData: (cityName: string) => Promise<IGeocodingApiResponse>;
 }
 
 const BASE_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 
-async function getCityCoordinates<IGeocodingApiResponse>(cityName: string) {
+async function getCitiesData<IGeocodingApiResponse>(cityName: string) {
   const { data } = await axios.get<IGeocodingApiResponse>(
     `${BASE_URL}?name=${cityName}&count=100&language=en&format=json`
   );
@@ -16,5 +16,5 @@ async function getCityCoordinates<IGeocodingApiResponse>(cityName: string) {
 }
 
 export const geocodingApi: GeocodingApi = {
-  getCityCoordinates,
+  getCitiesData,
 };

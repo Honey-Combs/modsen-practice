@@ -7,7 +7,9 @@ import { RootState } from '@/store/store';
 import { DayWeatherCard } from '@/components/DailyForecastWidget/DayWeatherCard';
 
 export function DailyForecastWidget() {
-  const dailyWeatherForecast = useSelector((state: RootState) => selectDailyWeatherForecast(state));
+  const dailyWeatherForecast = useSelector((state: RootState) =>
+    selectDailyWeatherForecast(state)
+  );
   const dailyForecast = dailyWeatherForecast?.map((weatherForDay) => (
     <DayWeatherCard key={nanoid()} weatherForDay={weatherForDay} />
   ));

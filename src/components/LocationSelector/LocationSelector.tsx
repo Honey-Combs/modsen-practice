@@ -1,48 +1,46 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import React from 'react';
-import Select from 'react-select';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { StyledLocationSelector } from '@/components/LocationSelector/styled';
-
-type FormData = {
-  cityName: string;
-};
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { StyledLocationSelector, StyledSelectorWrapper } from './styled';
+import {
+  fetchCitiesByNameRequested,
+  selectCities,
+} from '@/store/slices/geocodingSlice';
+import { RootState } from '@/store/store';
+import { GPSCoordinates } from '@/typings/GPSCoordinates';
+import { setLocation } from '@/store/slices/geolocationSlice';
 
 type City = {
   label: string;
-  value: string;
+  value: GPSCoordinates | null;
 };
 
 export function LocationSelector() {
-  const { handleSubmit, control } = useForm<FormData>();
-  const countries = [
-    { label: 'Mogilev', value: 'Mogilev' },
-    { label: 'Minsk', value: 'Minsk' },
-  ];
+  const cities = useSelector((state: RootState) => selectCities(state));
+  const dispatch = useDispatch();
 
-  const onSubmit: SubmitHandler<FormData> = ({ cityName }: FormData) => {
-    console.log(cityName);
+  const options = cities?.map<City>(({ name, latitude, longitude }) => {
+    return { label: `${name}`, value: { latitude, longitude } };
+  });
+
+  const onChange = (selectedOption: City | unknown) => {
+    dispatch(setLocation((selectedOption as City)?.value) ?? null);
+  };
+
+  const onInputChange = (text: string) => {
+    console.log(text);
+    dispatch(fetchCitiesByNameRequested(text));
   };
 
   return (
-    <StyledLocationSelector>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="cityName"
-          control={control}
-          render={({field: {onChange}}) => (
-            <Select
-              options={countries}
-              onChange={(selectedOption: City | null) => {
-                onChange(selectedOption?.value);
-              }}
-            />
-          )}
-          rules={{ required: true }}
-        />
-      </form>
-    </StyledLocationSelector>
+    <StyledSelectorWrapper>
+      <StyledLocationSelector
+        options={options}
+        onChange={onChange}
+        onInputChange={onInputChange}
+      />
+    </StyledSelectorWrapper>
   );
 }
