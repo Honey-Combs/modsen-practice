@@ -1,5 +1,3 @@
-import { weatherForecastApi } from '@/api/weatherForecastApi/weatherForecastApi';
-import { IOpenMeteoDailyForecast } from '@/api/weatherForecastApi/responseModels';
 import { PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchDailyForecastRequested,
@@ -7,7 +5,9 @@ import {
   fetchDailyForecastSuccess,
 } from '@store/slices/dailyWeatherForecastSlice';
 import { CallEffect, PutEffect, call, put, takeEvery } from 'redux-saga/effects';
-import { GPSCoordinates } from '@/typings/types/GPSCoordinates';
+import { weatherForecastApi } from '@/api/weatherForecastApi/weatherForecastApi';
+import { GPSCoordinates } from '@/typings/GPSCoordinates';
+import { IOpenMeteoDailyForecast } from '@/interfaces/IWeatherForecastApiResponses';
 
 export function* fetchDailyForecast(
   action: PayloadAction<GPSCoordinates>

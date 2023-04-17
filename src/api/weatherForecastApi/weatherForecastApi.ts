@@ -1,6 +1,9 @@
 import axios from 'axios';
-import { IOpenMeteoDailyForecast, IOpenMeteoHourlyForecast } from './responseModels';
-import { GPSCoordinates } from '@/typings/types/GPSCoordinates';
+import {
+  IOpenMeteoDailyForecast,
+  IOpenMeteoHourlyForecast,
+} from '@/interfaces/IWeatherForecastApiResponses';
+import { GPSCoordinates } from '@/typings/GPSCoordinates';
 
 export interface WeatherForecastApi {
   getDailyForecast: ({ latitude, longitude }: GPSCoordinates) => Promise<IOpenMeteoDailyForecast>;

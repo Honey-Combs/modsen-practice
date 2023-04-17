@@ -27,7 +27,7 @@ export interface IOpenMeteoHourlyForecast
     winddirection_10m: string;
     windspeed_10m: string;
   };
-  daily: {
+  hourly: {
     time: string[];
     temperature_2m: number[];
     weathercode: number[];
