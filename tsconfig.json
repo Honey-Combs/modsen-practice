@@ -19,12 +19,17 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
+      "@api/*": ["src/api/*"],
       "@assets/*": ["src/assets/*"],
-      "@typings/*": ["src/typings/*"],
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@enums/*": ["src/enums/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@layouts/*": ["src/layouts/*"],
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/store/*"],
-      "@api/*": ["src/api/*"],
+      "@typings/*": ["src/typings/*"],
+      "@utils/*": ["src/utils/*"],
     }
   },
 

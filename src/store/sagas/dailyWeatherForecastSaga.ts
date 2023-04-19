@@ -5,7 +5,7 @@ import {
   fetchDailyForecastSuccess,
 } from '@store/slices/dailyWeatherForecastSlice';
 import { CallEffect, PutEffect, call, put, takeEvery } from 'redux-saga/effects';
-import { weatherForecastApi } from '@/api/weatherForecastApi/weatherForecastApi';
+import { weatherForecastApi } from '@/api/weatherForecastApi';
 import { GPSCoordinates } from '@/typings/GPSCoordinates';
 import { IOpenMeteoDailyForecast } from '@/interfaces/IWeatherForecastApiResponses';
 

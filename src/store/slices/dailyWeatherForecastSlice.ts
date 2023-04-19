@@ -21,11 +21,17 @@ export const dailyWeatherForecastSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    fetchDailyForecastRequested(state, action: PayloadAction<GPSCoordinates | null>) {
+    fetchDailyForecastRequested(
+      state,
+      action: PayloadAction<GPSCoordinates | null>
+    ) {
       state.loadingState = LoadingState.loading;
     },
 
-    fetchDailyForecastSuccess(state, action: PayloadAction<IOpenMeteoDailyForecast>) {
+    fetchDailyForecastSuccess(
+      state,
+      action: PayloadAction<IOpenMeteoDailyForecast>
+    ) {
       state.loadingState = LoadingState.success;
       state.dailyForecast = action.payload;
     },
@@ -42,11 +48,11 @@ export const selectDailyWeatherForecast = createSelector(
     const arr = daily?.time.map<IWeatherForDay>((date, index) => {
       return {
         time: new Date(date),
-        icon: daily.weathercode[index],
+        weathercode: daily.weathercode[index],
         windSpeed: daily.windspeed_10m_max[index],
         windDirection: daily.windspeed_10m_max[index],
-        maxTemperature: daily.temperature_2m_max[index],
-        minTemperature: daily.temperature_2m_min[index],
+        maxTemperature: Math.ceil(daily.temperature_2m_max[index]),
+        minTemperature: Math.ceil(daily.temperature_2m_min[index]),
       };
     });
 
@@ -54,7 +60,10 @@ export const selectDailyWeatherForecast = createSelector(
   }
 );
 
-export const { fetchDailyForecastRequested, fetchDailyForecastSuccess, fetchDailyForecastFailed } =
-  dailyWeatherForecastSlice.actions;
+export const {
+  fetchDailyForecastRequested,
+  fetchDailyForecastSuccess,
+  fetchDailyForecastFailed,
+} = dailyWeatherForecastSlice.actions;
 
 export default dailyWeatherForecastSlice.reducer;

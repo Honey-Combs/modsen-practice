@@ -7,7 +7,7 @@ import {
   takeEvery,
 } from 'redux-saga/effects';
 import { IGeocodingApiResponse } from '@/interfaces/IGeocodingApiResponses';
-import { geocodingApi } from '@/api/geocodingApi/geocodingApi';
+import { geocodingApi } from '@/api/geocodingApi';
 import {
   fetchCitiesByNameFailed,
   fetchCitiesByNameRequested,

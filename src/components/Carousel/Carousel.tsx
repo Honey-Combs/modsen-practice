@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
-import {
-  StyledCarousel,
-  StyledNextButton,
-  StyledPreviousButton,
-} from '@/components/Carousel/styled';
+import { StyledCarousel, StyledButton } from '@/components/Carousel/styled';
 
 export type CarouselProps = {
-  items: React.ReactElement[];
-  numberOfItemsPerSlide: number;
+  children?: React.ReactElement[];
+  numberOfItemsToDisplay: number;
+  step: number;
 };
 
-export function Carousel({ items, numberOfItemsPerSlide }: CarouselProps) {
-  const [sectionIndex, setSectionIndex] = useState(0);
+export function Carousel({
+  children = [],
+  step,
+  numberOfItemsToDisplay,
+}: CarouselProps) {
+  const [itemIndex, setItemIndex] = useState(0);
 
   const handlePreviousButtonClick = () => {
-    const newIndex = sectionIndex - 1;
+    const newIndex = itemIndex - step;
 
     if (newIndex >= 0) {
-      setSectionIndex(newIndex);
+      setItemIndex(newIndex);
     }
   };
 
   const handleNextButtonClick = () => {
-    const newIndex = sectionIndex - 1;
+    const newIndex = itemIndex + step;
 
-    if (newIndex > sections.length) {
-      setSectionIndex(newIndex);
+    if (newIndex > numberOfItemsToDisplay) {
+      setItemIndex(children.length - numberOfItemsToDisplay);
+    } else {
+      setItemIndex(newIndex);
     }
   };
 
   return (
     <StyledCarousel>
-      <StyledPreviousButton onClick={handlePreviousButtonClick} />
-      {sections[sectionIndex]}
-      <StyledNextButton onClick={handleNextButtonClick} />
+      <StyledButton onClick={handlePreviousButtonClick}>&lt;</StyledButton>
+      {children.slice(itemIndex, numberOfItemsToDisplay + itemIndex)}
+      <StyledButton onClick={handleNextButtonClick}>&gt;</StyledButton>
     </StyledCarousel>
   );
 }

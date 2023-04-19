@@ -20,10 +20,6 @@ export const StyledDayOfWeek = styled.div`
 
 export const StyledWeatherPhenomenonIcon = styled.div``;
 
-export const StyledMaxTemperature = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
-`;
-
-export const StyledMinTemperature = styled.div`
+export const StyledTemperature = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.regular};
 `;

@@ -1,6 +1,6 @@
 export interface IWeather {
   time: Date;
-  icon: number;
+  weathercode: number;
   windSpeed: number;
   windDirection: number;
 }

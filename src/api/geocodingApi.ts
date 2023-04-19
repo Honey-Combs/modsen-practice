@@ -9,7 +9,7 @@ const BASE_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 
 async function getCitiesData<IGeocodingApiResponse>(cityName: string) {
   const { data } = await axios.get<IGeocodingApiResponse>(
-    `${BASE_URL}?name=${cityName}&count=100&language=en&format=json`
+    `${BASE_URL}?name=${cityName}&count=50&language=en&format=json`
   );
 
   return data;

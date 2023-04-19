@@ -21,16 +21,20 @@ export function LocationSelector() {
   const cities = useSelector((state: RootState) => selectCities(state));
   const dispatch = useDispatch();
 
-  const options = cities?.map<City>(({ name, latitude, longitude }) => {
-    return { label: `${name}`, value: { latitude, longitude } };
-  });
+  const options = cities?.map<City>(
+    ({ name, latitude, longitude, firstAdministrativeLevel }) => {
+      return {
+        label: `${name}, ${firstAdministrativeLevel}`,
+        value: { latitude, longitude },
+      };
+    }
+  );
 
   const onChange = (selectedOption: City | unknown) => {
     dispatch(setLocation((selectedOption as City)?.value) ?? null);
   };
 
   const onInputChange = (text: string) => {
-    console.log(text);
     dispatch(fetchCitiesByNameRequested(text));
   };
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import { IWeatherForDay } from '@interfaces/IWeatherForDay';
 import {
   StyledDayOfWeek,
   StyledDayWeatherCard,
-  StyledMaxTemperature,
-  StyledMinTemperature,
+  StyledTemperature,
   StyledWeatherPhenomenonIcon,
 } from './styled';
-import { IWeatherForDay } from '@/typings/interfaces/IWeatherForDay';
+import { weatherConditions } from '@/constants/weatherConditions';
 
 export type DayWeatherCardProps = {
   weatherForDay: IWeatherForDay;
@@ -16,22 +16,17 @@ export type DayWeatherCardProps = {
 export function DayWeatherCard({
   weatherForDay: weather,
 }: DayWeatherCardProps) {
-  const formattedDate = moment(weather.time).format(
-    '	ddd, D MMM'
-  );
+  const formattedDate = moment(weather.time).format('	ddd, D MMM');
 
   return (
     <StyledDayWeatherCard>
       <StyledDayOfWeek>{formattedDate}</StyledDayOfWeek>
       <StyledWeatherPhenomenonIcon>
-        {weather.icon}
+        {weatherConditions.get(weather.weathercode)}
       </StyledWeatherPhenomenonIcon>
-      <StyledMaxTemperature>
-        {weather.maxTemperature}
-      </StyledMaxTemperature>
-      <StyledMinTemperature>
-        {weather.minTemperature}
-      </StyledMinTemperature>
+      <StyledTemperature>
+        {`${weather.minTemperature} ... ${weather.maxTemperature} °C`}
+      </StyledTemperature>
     </StyledDayWeatherCard>
   );
 }

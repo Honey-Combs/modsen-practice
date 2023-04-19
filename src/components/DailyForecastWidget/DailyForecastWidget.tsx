@@ -5,6 +5,7 @@ import { StyledDailyForecastWidget } from './styled';
 import { selectDailyWeatherForecast } from '@/store/slices/dailyWeatherForecastSlice';
 import { RootState } from '@/store/store';
 import { DayWeatherCard } from '@/components/DailyForecastWidget/DayWeatherCard';
+import { Carousel } from '@/components/Carousel/Carousel';
 
 export function DailyForecastWidget() {
   const dailyWeatherForecast = useSelector((state: RootState) =>
@@ -13,5 +14,9 @@ export function DailyForecastWidget() {
   const dailyForecast = dailyWeatherForecast?.map((weatherForDay) => (
     <DayWeatherCard key={nanoid()} weatherForDay={weatherForDay} />
   ));
-  return <StyledDailyForecastWidget>{dailyForecast}</StyledDailyForecastWidget>;
+  return (
+    <StyledDailyForecastWidget>
+      <Carousel step={1} numberOfItemsToDisplay={8}>{dailyForecast}</Carousel>
+    </StyledDailyForecastWidget>
+  );
 }
